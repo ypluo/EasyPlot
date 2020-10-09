@@ -27,6 +27,8 @@ def plotlines(filepath, xlabel, ylabel, xlist, legendlist, scaling=1):#比较的
     plt.figure(figsize=FigureSize)
     # read data
     datalist = np.loadtxt(filepath).transpose()
+    if len(datalist.shape) == 1:
+        datalist = np.array([datalist])
     
     for i in range(len(datalist)): # the last one has solid line and full filling style
         ls =  'solid' if i == len(datalist) - 1 else 'dashed'

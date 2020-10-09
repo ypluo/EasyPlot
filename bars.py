@@ -27,17 +27,25 @@ bar_distance   = 0.10 # control the distance between two bars,  value in (0, 0.2
 def plotax(ax, filepath, xlabel, ylabel, xlist, title, legendlist, scaling):
     datalist = np.loadtxt(filepath).transpose()
     
+    # the shape of the data is (n, 1), after a transpose, it turn to one dimension, which is not expected
+    if len(datalist.shape) == 1:
+        datalist = np.array([datalist])
+
     xcount = len(xlist)
     bar_count = len(datalist)
     x = np.array([i for i in range(xcount)], dtype=np.float32)
+
+    if bar_count == 1:
+        bar_width = (1 - group_distance) / bar_count
+    else :
+        bar_width = (1 - group_distance) / bar_count - bar_distance / (bar_count - 1)
 
     # plot the bar first
     for i in range(bar_count):
         barcolor = 'blue' if i == bar_count - 1 else 'None'
         hatch = '' if i == bar_count - 1 else hatchlist[i]
         # plot bars
-        bar_width = (1 - group_distance) / bar_count - bar_distance / (bar_count - 1)
-        ax.bar(x, datalist[i] / scaling, width = bar_width, label=legendlist[i], edgecolor="black", color=barcolor, hatch=hatch)
+        ax.bar(x, datalist[i] / scaling, width = bar_width, edgecolor="black", color=barcolor, hatch=hatch)
         # update position to plot bar
         x += (1 - group_distance) / bar_count
     

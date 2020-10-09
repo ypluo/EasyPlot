@@ -28,6 +28,9 @@ bar_distance   = 0.15 # control the distance between two bars, suggest value in 
  
 def plotbars(filepath, xlabel, ylabel, title, xlist, legendlist, scaling = 1):
     datalist = np.loadtxt(filepath).transpose()
+    if len(datalist.shape) == 1:
+        datalist = np.array([datalist])
+
     xcount = len(xlist)
     bar_count = len(datalist)
     x = np.array([i for i in range(xcount)], dtype=np.float32)
