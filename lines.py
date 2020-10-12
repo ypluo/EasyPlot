@@ -8,6 +8,7 @@ import matplotlib.ticker as mtick
 import numpy as np
 import os
 import datetime
+from matplotlib.transforms import Bbox
 
 
 mpl.rcParams['font.family'] = 'Times New Roman'
@@ -48,8 +49,11 @@ def plotax(ax, filepath, xlabel, ylabel, xlist, title, scaling):
 
 
 def plotlines(filepaths, xlabel, ylabel, xlist, legendlist, titles, scaling = 1):
-    FigureSize=(3.25 * len(filepaths), 2.4)
-    fig, axes = plt.subplots(1, len(filepaths), figsize = FigureSize)
+    width = 3.25 * len(filepaths)
+    height = 2.4
+    fig_box = Bbox([[1, 0], [width - 1, height + 0.4]])
+
+    fig, axes = plt.subplots(1, len(filepaths), figsize = (width, height))
 
     # plot multi sub-figures
     for i in range(len(filepaths)):
@@ -57,11 +61,11 @@ def plotlines(filepaths, xlabel, ylabel, xlist, legendlist, titles, scaling = 1)
         plotax(axes[i], filepaths[i], xlabel, share_ylabel, xlist, titles[i], scaling);
 
     # set glabol legend and y label
-    lg = fig.legend(legendlist, loc = "upper center", bbox_to_anchor=(0.435, 1.25), ncol = 3, frameon=False)
+    fig.legend(legendlist, loc = "upper center", bbox_to_anchor=(0.435, 1.15), ncol = 3, frameon=True)
     
     filepath_noext = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    plt.savefig(filepath_noext + ".svg", format="svg", bbox_inches='tight')
-    plt.savefig(filepath_noext+".png", bbox_inches='tight', dpi=600)
+    plt.savefig(filepath_noext + ".svg", format="svg",bbox_inches= fig_box )
+    plt.savefig(filepath_noext+".png", bbox_inches= fig_box, dpi=600)
 
 if __name__ == "__main__":
     plotlines(
