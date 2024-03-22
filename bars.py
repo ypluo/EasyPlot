@@ -18,7 +18,7 @@ letterfont = {
         'style': 'normal',
         'weight': 'normal',
         'color': 'black',
-        'size': 12}
+        'size': 10}
 
 hatchlist=['/', '.', '\\', '//\\\\', '*'] # change this to get different bar hatch
 group_distance = 0.18 # control the distance between two groups, value in (0, 0.4)

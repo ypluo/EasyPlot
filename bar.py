@@ -9,17 +9,15 @@ import matplotlib.ticker as mtick
 import numpy as np
 import datetime
 
-# set global font family and size
 mpl.rcParams['font.family'] = 'Times New Roman'
 mpl.rcParams['font.size'] = 12
 
 letterfont = {
         'family': 'Times New Roman',
         'style': 'normal',
-        'weight': 'bold',
+        'weight': 'normal',
         'color': 'black',
-        'size': 12
-}
+        'size': 10}
 
 FigureSize=(4, 3.2)
 hatchlist=['/', 'o', '\\', '//\\\\', '*'] # change this to get different bar hatch

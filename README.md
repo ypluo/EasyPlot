@@ -37,9 +37,13 @@ plotlines('lookup.txt', # file name
 
 This configuration draws a line figure in the following way. A svg format vector illustration figure is generated along with a png format figure.
 
-![sample](sample.svg)
+The result looks like this: 
 
+![line-sample](sample1.svg)
 
+Similarly，it achieves a bar figure as follows: 
+
+![bar-sample](sample3.svg)
 
 #### Draw a figure contains multi sub- line figures
 
@@ -59,14 +63,6 @@ plotlines(
 )
 ```
 
-the result of it looks like this: ![sample](sample2.svg)
+the result looks like this: ![lines-sample](sample2.svg)
 
-
-
-#### Draw a single bar figure
-
-In `bar.py`, basically the same as `line.py`
-
-#### Draw a figure contains multi sub- bar figures
-
-In `bars.py`, basically the same as `lines.py`
+Similarly，it achieves a bar figure as follows: ![bars-sample](sample4.svg)
